@@ -38,6 +38,12 @@ public class DesignController {
         model.addAttribute("design", new Taco());
     }
 
+    /**
+     * Here is an awesome way to return a collection of ingredients, filtered by type
+     * @param ingredients the list to filter through
+     * @param type to filter by
+     * @return Iterable of Ingredient, filtered by given type
+     */
     private Iterable<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
         return ingredients
                 .stream()
