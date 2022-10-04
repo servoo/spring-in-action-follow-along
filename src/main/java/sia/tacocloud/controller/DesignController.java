@@ -33,7 +33,7 @@ public class DesignController {
         for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
-        for (Map.Entry<String, Object> pair : model.asMap().entrySet()) System.out.println(pair);
+        model.asMap().entrySet().forEach(System.out::println);
 
         model.addAttribute("design", new Taco());
     }
