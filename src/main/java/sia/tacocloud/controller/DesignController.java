@@ -29,8 +29,7 @@ public class DesignController {
                 new Ingredient("GRBF", "Ground Beef", Type.PROTEIN)
         );
 
-        Type[] types = Ingredient.Type.values();
-        for (Type type : types) {
+        for (Type type : Ingredient.Type.values()) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
         model.asMap().entrySet().forEach(System.out::println);
