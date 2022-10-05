@@ -21,13 +21,19 @@ import java.util.stream.Collectors;
 @RequestMapping("/design")
 @SessionAttributes("tacoOrder")
 public class DesignController {
-
     @ModelAttribute()
     public void addIngredientsToModel(Model model) {
         List<Ingredient> ingredients = Arrays.asList(
                 new Ingredient("FLTO", "Flour Tortilla", Ingredient.Type.WRAP),
                 new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
-                new Ingredient("GRBF", "Ground Beef", Type.PROTEIN)
+                new Ingredient("GRBF", "Ground Beef", Ingredient.Type.PROTEIN),
+                new Ingredient("CARN", "Carnitas", Ingredient.Type.PROTEIN),
+                new Ingredient("TMTO", "Diced Tomatoes", Ingredient.Type.VEGGIES),
+                new Ingredient("LETC", "Lettuce", Ingredient.Type.VEGGIES),
+                new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
+                new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
+                new Ingredient("SLSA", "Salsa", Type.SAUCE),
+                new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
         );
 
         for (Type type : Ingredient.Type.values()) {
