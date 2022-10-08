@@ -30,8 +30,7 @@ public class DesignController {
                 new Ingredient("CHED", "Cheddar", Ingredient.Type.CHEESE),
                 new Ingredient("JACK", "Monterrey Jack", Type.CHEESE),
                 new Ingredient("SLSA", "Salsa", Type.SAUCE),
-                new Ingredient("SRCR", "Sour Cream", Type.SAUCE)
-        );
+                new Ingredient("SRCR", "Sour Cream", Type.SAUCE));
 
         for (Type type : Ingredient.Type.values()) {
             model.addAttribute(type.toString().toLowerCase(),
@@ -69,7 +68,8 @@ public class DesignController {
     }
 
     /**
-     * Here is an awesome way to return a collection of ingredients, filtered by type
+     * Here is an awesome way to return a collection of ingredients, filtered by
+     * type
      *
      * @param ingredients the list to filter through
      * @param type        to filter by
