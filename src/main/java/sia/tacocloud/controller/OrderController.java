@@ -22,7 +22,7 @@ public class OrderController {
         return "orderForm";
     }
 
-    @PostMapping(value = "/redirect")
+    @PostMapping()
     public String processOrder(TacoOrder order, SessionStatus sessionStatus) {
         log.info("Order submitted: {}", order);
         sessionStatus.setComplete();
