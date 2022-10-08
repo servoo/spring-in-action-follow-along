@@ -40,6 +40,6 @@ public class IngredientByIdConverter implements Converter<String, Ingredient> {
     @Override
     @Nullable
     public Ingredient convert(String id) {
-        return null;
+        return ingredientMap.get(id);
     }
 }
