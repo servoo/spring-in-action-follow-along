@@ -1,6 +1,9 @@
 package sia.tacocloud.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Component;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -23,7 +26,12 @@ public class OrderController {
     }
 
     @PostMapping()
-    public String processOrder(TacoOrder order, SessionStatus sessionStatus) {
+    public String processOrder(@Valid TacoOrder order, Errors error, SessionStatus sessionStatus) {
+
+        if (error.hasErrors()) {
+            return "/orderForm";
+        }
+
         log.info("Order submitted: {}", order);
         sessionStatus.setComplete();
 
