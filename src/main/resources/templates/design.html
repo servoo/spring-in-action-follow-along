@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
         <title>Taco Cloud</title>
+        <link rel="stylesheet" th:href="@{/styles.css}"/>
     </head>
 
     <body>
@@ -54,6 +55,12 @@
             <div>
                 <h3>Name your taco creation:</h3>
                 <input type="text" th:field="*{name}"/>
+                <span class="validationError" 
+                    th:if="${#fields.hasErrors('name')}"
+                    th:errors="*{name}"> nameErr 
+                </span>
+
+                </span>
                 <br/>
                 <button>Submit Your Taco</button>
             </div>
