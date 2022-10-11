@@ -2,7 +2,9 @@ package sia.tacocloud.model;
 
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.validation.constraints.Digits;
@@ -12,7 +14,11 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.CreditCardNumber;
 
 @Data
-public class TacoOrder {
+public class TacoOrder implements Serializable {
+
+    private static final  long serialVersionUid = 1L;
+    private Long id;
+    private Date placedAt;
 
     @NotBlank(message = "Delivery name is required")
     private String deliveryName;
