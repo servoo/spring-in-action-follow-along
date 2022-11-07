@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcOperations;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.stereotype.Repository;
 import sia.tacocloud.model.Ingredient;
 import sia.tacocloud.model.Taco;
 import sia.tacocloud.model.TacoOrder;
@@ -15,6 +16,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+@Repository
 public class JdbcOrderRepository implements OrderRepository {
 
     private final JdbcOperations jdbcOperations;
@@ -27,10 +29,10 @@ public class JdbcOrderRepository implements OrderRepository {
     @Transactional
     public TacoOrder save(TacoOrder order) {
         PreparedStatementCreatorFactory pscf = new PreparedStatementCreatorFactory(
-                "insert into Taco_Order" +
-                        "delivery_name, delivery_street, delivery_city," +
-                        "delivery_state, delivery_zip, cc_number" +
-                        "cc_expiration, cc_cvv, placed_at)" +
+                "insert into Taco_Order " +
+                        "(delivery_name, delivery_street, delivery_city, " +
+                        "delivery_state, delivery_zip, cc_number, " +
+                        "cc_expiration, cc_cvv, placed_at) " +
                         "values (?, ?, ?, ?, ?, ?, ?, ?, ?) ",
                 Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
                 Types.VARCHAR, Types.VARCHAR, Types.VARCHAR,
@@ -69,8 +71,8 @@ public class JdbcOrderRepository implements OrderRepository {
 
     private long saveTaco(long orderId, int orderKey, Taco taco) {
         PreparedStatementCreatorFactory pscf = new PreparedStatementCreatorFactory(
-                "insert into Taco" +
-                        "(name, created_at, taco_order, taco_order_key" +
+                "insert into Taco " +
+                        "(name, created_at, taco_order, taco_order_key) " +
                         "values (?, ?, ?, ?)",
                 Types.VARCHAR, Types.TIMESTAMP, Type.LONG, Type.LONG
         );
@@ -95,13 +97,13 @@ public class JdbcOrderRepository implements OrderRepository {
         return tacoId;
     }
 
-    private void saveIngredientRefs(long tacoId, List<Ingredient> ingredientsRefs) {
+    private void saveIngredientRefs(long tacoId, List<Ingredient> ingredients) {
         int key = 0;
-        for (Ingredient ingredient : ingredientsRefs) {
+        for (Ingredient ingredient : ingredients) {
             jdbcOperations.update(
                     "insert into Ingredient_Ref (ingredient, taco, taco_key) " +
                             "values (?, ?, ?)",
-                    ingredient.getType(), tacoId, key++);
+                    ingredient.getId(), tacoId, key++);
         }
     }
 }

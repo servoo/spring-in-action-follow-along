@@ -1,2 +1,9 @@
-package sia.tacocloud.model;public class IngredientRef {
+package sia.tacocloud.model;
+
+import lombok.Data;
+
+@Data
+public class IngredientRef {
+
+    private final String ingredient;
 }
