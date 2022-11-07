@@ -25,15 +25,30 @@ public class StartupConfig {
         order.setCcExpiration("01/28");
         order.setCcCVV("172");
 
-        Taco taco = Taco
+        Taco taco1 = Taco
                 .builder()
                 .createdAt(new Date())
                 .name("TacoA")
-                .ingredients(List.of(new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP)))
+                .ingredients(List.of(
+                        new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP),
+                        new Ingredient("GRBF", "Corn Tortilla", Ingredient.Type.PROTEIN),
+                        new Ingredient("TMTO", "Corn Tortilla", Ingredient.Type.VEGGIES)
+                ))
                 .build();
-        ;
+
+        Taco taco2 = Taco
+                .builder()
+                .createdAt(new Date())
+                .name("TacoA")
+                .ingredients(List.of(
+                        new Ingredient("CHED", "Corn Tortilla", Ingredient.Type.WRAP),
+                        new Ingredient("SLSA", "Corn Tortilla", Ingredient.Type.PROTEIN)
+                ))
+                .build();
+
         order.setTacos(List.of(
-                taco
+                taco1,
+                taco2
         ));
 
         orderRepository.save(order);

@@ -41,7 +41,10 @@ class OrderControllerTest {
         order.setCcCVV("172");
 
         Taco taco = Taco
-                .builder().name("TacoA").ingredients(List.of(new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP)))
+                .builder()
+                .createdAt(new Date())
+                .name("TacoA")
+                .ingredients(List.of(new Ingredient("COTO", "Corn Tortilla", Ingredient.Type.WRAP)))
                 .build();
         ;
         order.setTacos(List.of(
